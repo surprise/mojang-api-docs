@@ -1,42 +1,39 @@
 # Summary
 
-- [Mojang API Documentation](./index.md) DONE
+- [Mojang API Documentation](./index.md)
 - [No authentication](./no-auth/index.md)
-    - [Sale statistics](./no-auth/sale-stats.md) DONE
-    - [Blocked servers](./no-auth/blocked-servers.md) DONE
-    - [Username availability (accurate)](./no-auth/username-availability-accurate.md) DONE
-    - [Username to UUID (GET)](./no-auth/username-to-uuid-get.md) DONE
-    - [Username to UUID (POST)](./no-auth/username-to-uuid-post.md) DONE
-    - [UUID to username](./no-auth/uuid-to-username.md) DONE
-    - [UUID to user profile (skins, capes, etc.)](./no-auth/uuid-to-profile.md) DONE
-    - [Find profile's username history](./no-auth/name-history.md) DONE
+    - [Sale statistics](./no-auth/sale-stats.md)
+    - [Blocked servers](./no-auth/blocked-servers.md)
+    - [Username availability (accurate)](./no-auth/username-availability-accurate.md)
+    - [Username to UUID (GET)](./no-auth/username-to-uuid-get.md)
+    - [Username to UUID (POST)](./no-auth/username-to-uuid-post.md)
+    - [UUID to username](./no-auth/uuid-to-username.md)
+    - [UUID to user profile (skins, capes, etc.)](./no-auth/uuid-to-profile.md)
+    - [Find profile's username history](./no-auth/name-history.md)
 - [Authenticating](./authentication/index.md)
-    - [A peek into Bearer tokens](./authentication/bearers.md) DONE
+    - [A peek into Bearer tokens](./authentication/bearers.md)
     - [Authenticating a Microsoft account](./authentication/msa.md)
-    - [Authenticating a Mojang account](./authentication/mojang.md) DONE
-- [Security question-answer flow](./sq-flow/index.md) DONE
-    - [List of security questions](./sq-flow/list.md) DONE
-    - [Check if security questions are needed](./sq-flow/check-if-sqs-needed.md) DONE
-    - [Get security questions](./sq-flow/get-sqs.md) DONE
-    - [Send security answers](./sq-flow/send-sq-answers.md) DONE
+    - [Authenticating a Mojang account](./authentication/mojang.md)
+- [Security question-answer flow](./sq-flow/index.md)
+    - [List of security questions](./sq-flow/list.md)
+    - [Check if security questions are needed](./sq-flow/check-if-sqs-needed.md)
+    - [Get security questions](./sq-flow/get-sqs.md)
+    - [Send security answers](./sq-flow/send-sq-answers.md)
 - [Requires authentication](./needs-auth/index.md)
-    - [Redeem a giftcode / voucher](./needs-auth/redeem-gc.md) DONE
-    - [Username availability (accurate)](./needs-auth/username-availability-accurate.md) DONE
-    - [Create a Minecraft profile](./needs-auth/create-profile.md) DONE
-    - [View user information](./needs-auth/view-user.md) DONE
-    - [View your profile information](./needs-auth/view-profile.md) DONE
-    - [View your profile information (old) - GET](./needs-auth/view-profile-old-get.md) DONE
-    - [View your profile information (old) - POST](./needs-auth/view-profile-old-post.md) DONE
-    - [Name change eligibility](./needs-auth/name-change-eligibility.md) DONE
-    - [Change your account's username](./needs-auth/change-name.md) DONE
-    - [Check your account's skin (old)](./needs-auth/check-skin.md) DONE
-    - [Change your account's skin](./needs-auth/change-skin.md) DONE
-    - [Reset your skin](./needs-auth/reset-skin.md) DONE
-    - [Check your account's capes (old)](./needs-auth/check-capes.md) DONE
-    - [Change your enabled cape](./needs-auth/change-cape.md) DONE
-    - [Disable your cape](./needs-auth/disable-cape.md) DONE
-    - [View credit card information](./needs-auth/credit-cards.md) DONE
-<!-- - [Staging API](./staging/index.md)
-    - [Sale statistics](./staging/sale-stats.md)
-    - [Username to UUID](./staging/username-to-uuid.md)
-    - [Bulk username to UUID](./staging/bulk-name-to-uuid.md) !-->
+    - [Redeem a giftcode / voucher](./needs-auth/redeem-gc.md)
+    - [Username availability (accurate)](./needs-auth/username-availability-accurate.md)
+    - [Create a Minecraft profile](./needs-auth/create-profile.md)
+    - [View user information](./needs-auth/view-user.md)
+    - [View your profile information](./needs-auth/view-profile.md)
+    - [View your profile information (old) - GET](./needs-auth/view-profile-old-get.md)
+    - [View your profile information (old) - POST](./needs-auth/view-profile-old-post.md)
+    - [Name change eligibility](./needs-auth/name-change-eligibility.md)
+    - [Change your account's username](./needs-auth/change-name.md)
+    - [Check your account's skin (old)](./needs-auth/check-skin.md)
+    - [Change your account's skin](./needs-auth/change-skin.md)
+    - [Reset your skin](./needs-auth/reset-skin.md)
+    - [Check your account's capes (old)](./needs-auth/check-capes.md)
+    - [Change your enabled cape](./needs-auth/change-cape.md)
+    - [Disable your cape](./needs-auth/disable-cape.md)
+    - [View credit card information](./needs-auth/credit-cards.md)
+    - [Change user password](./needs-auth/change-password.md)

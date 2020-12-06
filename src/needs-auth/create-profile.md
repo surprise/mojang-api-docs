@@ -111,3 +111,21 @@ You have not provided a valid JWT / auth token, or you have neglected to provide
   "developerMessage" : "Unauthorized"
 }
 ```
+
+**500: Internal Server Error**
+
+If this status code is returned, the API is most likely being overloaded.
+
+```json
+{
+  "path" : "/minecraft/profile",
+  "errorType" : "Connect Error: Acquire operation took longer then configured maximum time",
+  "error" : "Connect Error: Acquire operation took longer then configured maximum time"
+}
+
+{
+  "path" : "/minecraft/profile",
+  "errorType" : "Connect Error: Too many outstanding acquire operations",
+  "error" : "Connect Error: Too many outstanding acquire operations"
+}
+```
