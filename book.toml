@@ -1,0 +1,6 @@
+[book]
+authors = ["what", "Elias", "LukeTheHacker", "nx", "HX7", "Dusks", "tanpug"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Mojang API Documentation"
