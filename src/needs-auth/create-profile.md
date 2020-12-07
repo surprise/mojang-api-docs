@@ -1,7 +1,7 @@
 # Create a Minecraft profile
 This endpoint allows a user with a redeemed giftcode on their account to create a Minecraft profile.
 
-**Note:** This endpoint has zero ratelimit.
+**Note:** This endpoint has a ratelimit of 6-10 requests per minute.
 
 ### Request
 - **Method:** `POST`
@@ -51,12 +51,22 @@ Something went wrong while creating the profile. Perhaps you already own a copy 
 ```json
 // if you already own a copy of Minecraft: Java Edition
 {
-    "path": "/minecraft/profile",
-    "errorType": "BAD_REQUEST",
-    "error": "BAD_REQUEST",
-    "details": {
-        "status": "ALREADY_REGISTERED"
+    "path" : "/minecraft/profile",
+    "errorType" : "BAD_REQUEST",
+    "error" : "BAD_REQUEST",
+    "details" : {
+        "status" : "ALREADY_REGISTERED"
     }
+}
+
+// if you don't own a copy of Minecraft: Java Edition
+{
+  "path" : "/minecraft/profile",
+  "errorType" : "BAD_REQUEST",
+  "error" : "BAD_REQUEST",
+  "details" : {
+    "status" : "NOT_ENTITLED"
+  }
 }
 
 // if you supply a username that already exists
@@ -109,6 +119,20 @@ You have not provided a valid JWT / auth token, or you have neglected to provide
   "error" : "UnauthorizedOperationException",
   "errorMessage" : "Unauthorized",
   "developerMessage" : "Unauthorized"
+}
+```
+
+**429: Too Many Requests**
+
+You have exceeded the endpoint's ratelimit. Wait 60 seconds, then try again.
+
+```json
+{
+  "path" : "/minecraft/profile",
+  "errorType" : "TooManyRequestsException",
+  "error" : "TooManyRequestsException",
+  "errorMessage" : "The client has sent too many requests within a certain amount of time",
+  "developerMessage" : "The client has sent too many requests within a certain amount of time"
 }
 ```
 
