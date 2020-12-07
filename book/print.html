@@ -1059,7 +1059,7 @@ TAKEN
 <p><strong>TODO: Fill in other responses if any</strong></p>
 <h1><a class="header" href="#create-a-minecraft-profile" id="create-a-minecraft-profile">Create a Minecraft profile</a></h1>
 <p>This endpoint allows a user with a redeemed giftcode on their account to create a Minecraft profile.</p>
-<p><strong>Note:</strong> This endpoint has zero ratelimit.</p>
+<p><strong>Note:</strong> This endpoint has a ratelimit of 6-10 requests per minute.</p>
 <h3><a class="header" href="#request-14" id="request-14">Request</a></h3>
 <ul>
 <li><strong>Method:</strong> <code>POST</code></li>
@@ -1102,12 +1102,22 @@ TAKEN
 <p>Something went wrong while creating the profile. Perhaps you already own a copy of Minecraft: Java Edition, or you supplied an invalid username, or something else. Here are the errors we've stumbled into:</p>
 <pre><code class="language-json">// if you already own a copy of Minecraft: Java Edition
 {
-    &quot;path&quot;: &quot;/minecraft/profile&quot;,
-    &quot;errorType&quot;: &quot;BAD_REQUEST&quot;,
-    &quot;error&quot;: &quot;BAD_REQUEST&quot;,
-    &quot;details&quot;: {
-        &quot;status&quot;: &quot;ALREADY_REGISTERED&quot;
+    &quot;path&quot; : &quot;/minecraft/profile&quot;,
+    &quot;errorType&quot; : &quot;BAD_REQUEST&quot;,
+    &quot;error&quot; : &quot;BAD_REQUEST&quot;,
+    &quot;details&quot; : {
+        &quot;status&quot; : &quot;ALREADY_REGISTERED&quot;
     }
+}
+
+// if you don't own a copy of Minecraft: Java Edition
+{
+  &quot;path&quot; : &quot;/minecraft/profile&quot;,
+  &quot;errorType&quot; : &quot;BAD_REQUEST&quot;,
+  &quot;error&quot; : &quot;BAD_REQUEST&quot;,
+  &quot;details&quot; : {
+    &quot;status&quot; : &quot;NOT_ENTITLED&quot;
+  }
 }
 
 // if you supply a username that already exists
@@ -1156,6 +1166,16 @@ TAKEN
   &quot;error&quot; : &quot;UnauthorizedOperationException&quot;,
   &quot;errorMessage&quot; : &quot;Unauthorized&quot;,
   &quot;developerMessage&quot; : &quot;Unauthorized&quot;
+}
+</code></pre>
+<p><strong>429: Too Many Requests</strong></p>
+<p>You have exceeded the endpoint's ratelimit. Wait 60 seconds, then try again.</p>
+<pre><code class="language-json">{
+  &quot;path&quot; : &quot;/minecraft/profile&quot;,
+  &quot;errorType&quot; : &quot;TooManyRequestsException&quot;,
+  &quot;error&quot; : &quot;TooManyRequestsException&quot;,
+  &quot;errorMessage&quot; : &quot;The client has sent too many requests within a certain amount of time&quot;,
+  &quot;developerMessage&quot; : &quot;The client has sent too many requests within a certain amount of time&quot;
 }
 </code></pre>
 <p><strong>500: Internal Server Error</strong></p>
