@@ -28,17 +28,15 @@ Microsoft Accounts are what Minecraft players will be logging in with very soon,
 
 An example MSA token, when decoded (try with [the official JWT site](https://jwt.io/)!), looks like this:
 
-**Note:** This sample has been heavily redacted due to the fact that frankly I'm not aware of what some of these values are or if they hold sensitive info.
-
 ```json
 {
-  "xuid": "xUID (xbox uuid basically)",
-  "sub": "32 char hex string (dashed like a UUID)", // normal Yggdrasil tokens have same code but NOT dashed
+  "xuid": "2533274805829568", // xUID (Xbox user identifier basically)
+  "sub": "830491e6-50e9-e9ed-6e8a-7041f4fef585", // determines the token from others
   "nbf": 1606845146, // seems to be same as "iat"
   "roles": [], // ??? perhaps "entitlements" that have been referenced before on API
   "iss": "authentication", // issued by "authentication" (xbox auth) - Yggdrasil normally says "Yggdrasil-Auth"
   "exp": 1606931546, // expire time
   "iat": 1606845146, // created at
-  "yuid": "32 char hex string" // not sure yet
+  "yuid": "54fc50c1b1bc19dd109fbeff9d11bf41" // something internal with Xbox, not sure
 }
 ```

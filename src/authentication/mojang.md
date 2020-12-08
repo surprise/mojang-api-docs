@@ -50,7 +50,7 @@ We have successfully authenticated. Below is a sample response of what you would
     "username" : "newname34234", // Mojang account email or username (legacy)
     "id" : "2ea6d02ea02ea6e2acf579df2e2eb15f" // Mojang account identifier (userId value)
   },
-  "accessToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyZWE2ZDAyZWEwMmVhNmUyYWNmNTc5ZGYyZTJlYjE1ZiIsInlnZ3QiOiIyZWUzMmRiYjJlMzM0ODJlMmVkMWVhMmQ2MzYyMjlhOCIsInNwciI6IjMxZTBjY2JlZjVmYTRlYjk4ODU5MmYzMDUxNmY2NWZlYyIsImlzcyI6IllnZ2RyYXNpbC1BdXRoIiwiZXhwIjoxNjA3MDYyMjI1LCJpYXQiOjE2MDY4ODk0MjV9.wlo94pIG_H14rxFLYvf1UqeGXUUHItkSSfDvdqquOdI", // Bearer token
+  "accessToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyZWE2ZDAyZWEwMmVhNmUyYWNmNTc5ZGYyZTJlYjE1ZiIsInlnZ3QiOiIyZWUzMmRiYjJlMzM0ODJlMmVkMWVhMmQ2MzYyMjlhOCIsInNwciI6IjMxZTBjY2JlZjVmYTRlYjk4ODU5MmYzMDUxNmY2NWZlIiwiaXNzIjoiWWdnZHJhc2lsLUF1dGgiLCJleHAiOjE2MDcwNjIyMjUsImlhdCI6MTYwNjg4OTQyNX0.GLSOzNO5zbb0aU0emCHfMmEke1kGzfRsk7mwrrBrhbs", // Bearer token
   "clientToken" : "Mojang-API-Client", // client token we identified ourselves with
   "availableProfiles" : [ // array of available profiles (one Mojang account can have multiple Minecraft profiles on it)
     {
