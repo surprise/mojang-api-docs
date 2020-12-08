@@ -176,6 +176,7 @@
 <li>Dusks</li>
 <li>tanpug</li>
 <li>courtier</li>
+<li>Maryy</li>
 </ul>
 <p>If I missed your credit, reach out. I want to give credit where credit is due.</p>
 <p>Thanks to Luke especially for forking over the cash to purchase new copies of Minecraft for testing purposes.</p>
@@ -619,20 +620,39 @@ TAKEN
 <h3><a class="header" href="#msa-tokens" id="msa-tokens">MSA Tokens</a></h3>
 <p>Microsoft Accounts are what Minecraft players will be logging in with very soon, so it's good to take a peek inside a MSA token! These are similar yet different in many ways to Yggdrasil tokens.</p>
 <p>An example MSA token, when decoded (try with <a href="https://jwt.io/">the official JWT site</a>!), looks like this:</p>
-<p><strong>Note:</strong> This sample has been heavily redacted due to the fact that frankly I'm not aware of what some of these values are or if they hold sensitive info.</p>
 <pre><code class="language-json">{
-  &quot;xuid&quot;: &quot;xUID (xbox uuid basically)&quot;,
-  &quot;sub&quot;: &quot;32 char hex string (dashed like a UUID)&quot;, // normal Yggdrasil tokens have same code but NOT dashed
+  &quot;xuid&quot;: &quot;2533274805829568&quot;, // xUID (Xbox user identifier basically)
+  &quot;sub&quot;: &quot;830491e6-50e9-e9ed-6e8a-7041f4fef585&quot;, // determines the token from others
   &quot;nbf&quot;: 1606845146, // seems to be same as &quot;iat&quot;
   &quot;roles&quot;: [], // ??? perhaps &quot;entitlements&quot; that have been referenced before on API
   &quot;iss&quot;: &quot;authentication&quot;, // issued by &quot;authentication&quot; (xbox auth) - Yggdrasil normally says &quot;Yggdrasil-Auth&quot;
   &quot;exp&quot;: 1606931546, // expire time
   &quot;iat&quot;: 1606845146, // created at
-  &quot;yuid&quot;: &quot;32 char hex string&quot; // not sure yet
+  &quot;yuid&quot;: &quot;54fc50c1b1bc19dd109fbeff9d11bf41&quot; // something internal with Xbox, not sure
 }
 </code></pre>
 <h1><a class="header" href="#authenticating-a-microsoft-account" id="authenticating-a-microsoft-account">Authenticating a Microsoft account</a></h1>
-<p>Under HEAVY construction.</p>
+<p>This article aims to partially document how to log in to a Microsoft account to authenticate with Minecraft.</p>
+<p><strong>WARNING:</strong> This is not a finished article!</p>
+<p>First, you must obtain your XBL3.0 token. This <a href="https://stackoverflow.com/a/52111578">StackOverflow answer</a> shows a way to get the XBL3.0 token in Python. If you take a peek at the source of the referenced library, you can make your own token grabber in your own language. This will be documented at some point later on in time.</p>
+<p>Next, send a <code>POST</code> request to <code>https://api.minecraftservices.com/authentication/login_with_xbox</code>. The POST body should be similar to:</p>
+<pre><code class="language-json">{
+   &quot;identityToken&quot; : &quot;XBL3.0 x=uhs;xsts&quot;,
+   &quot;ensureLegacyEnabled&quot; : true
+}
+</code></pre>
+<p>You must send this request with the <code>Content-Type: application/json</code> header.</p>
+<p>You will get a response similar to this:</p>
+<pre><code class="language-json">{
+  &quot;username&quot; : &quot;830491e6-50e9-e9ed-6e8a-7041f4fef585&quot;, // Xbox account username
+  &quot;roles&quot; : [ ], // i suppose this will have something in it if the account has a copy of Minecraft
+  &quot;access_token&quot; : &quot;eyJhbGciOiJIUzI1NiJ9.eyJ4dWlkIjoiMjUzMzI3NDgwNTgyOTU2OCIsInN1YiI6IjgzMDQ5MWU2LTUwZTktZTllZC02ZThhLTcwNDFmNGZlZjU4NSIsIm5iZiI6MTYwNjg0NTE0Niwicm9sZXMiOltdLCJpc3MiOiJhdXRoZW50aWNhdGlvbiIsImV4cCI6MTYwNjkzMTU0NiwiaWF0IjoxNjA2ODQ1MTQ2LCJ5dWlkIjoiNTRmYzUwYzFiMWJjMTlkZDEwOWZiZWZmOWQxMWJmNDEifQ.-7H1jT3i54gmbqQcUBdHArOn-Jr8eZVAyPDiOr5q_XY&quot;, // access token
+  &quot;token_type&quot; : &quot;Bearer&quot;, // don't think there are other types
+  &quot;expires_in&quot; : 86400 // number of seconds until token expires. MSA tokens last 24 hours. yes, really, 24 hours!
+}
+</code></pre>
+<p>The <code>access_token</code> is what you will now use to authenticate yourself to other API endpoints.</p>
+<p>See the &quot;A peek into Bearer tokens&quot; article for more information about what's inside the <code>access_token</code>.</p>
 <h1><a class="header" href="#authenticating-a-mojang-account" id="authenticating-a-mojang-account">Authenticating a Mojang account</a></h1>
 <p><strong>Warning: This article is DEPRECATED. Mojang is migrating existing Mojang accounts to Microsoft accounts in early 2021 and won't be supporting this method of authentication anymore. This article's aim is to show how to authenticate Mojang accounts if you have one from before December 1st, 2020, when Mojang switched to Microsoft's system for all new users.</strong></p>
 <p>In order to use any of the endpoints on Mojang's API that require authentication, we of course need to be authenticated. This article goes through how to authenticate a user via Mojang's <code>authserver</code>, codename Yggdrasil, to get an authorization token we can use.</p>
@@ -679,7 +699,7 @@ TAKEN
     &quot;username&quot; : &quot;newname34234&quot;, // Mojang account email or username (legacy)
     &quot;id&quot; : &quot;2ea6d02ea02ea6e2acf579df2e2eb15f&quot; // Mojang account identifier (userId value)
   },
-  &quot;accessToken&quot; : &quot;eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyZWE2ZDAyZWEwMmVhNmUyYWNmNTc5ZGYyZTJlYjE1ZiIsInlnZ3QiOiIyZWUzMmRiYjJlMzM0ODJlMmVkMWVhMmQ2MzYyMjlhOCIsInNwciI6IjMxZTBjY2JlZjVmYTRlYjk4ODU5MmYzMDUxNmY2NWZlYyIsImlzcyI6IllnZ2RyYXNpbC1BdXRoIiwiZXhwIjoxNjA3MDYyMjI1LCJpYXQiOjE2MDY4ODk0MjV9.wlo94pIG_H14rxFLYvf1UqeGXUUHItkSSfDvdqquOdI&quot;, // Bearer token
+  &quot;accessToken&quot; : &quot;eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyZWE2ZDAyZWEwMmVhNmUyYWNmNTc5ZGYyZTJlYjE1ZiIsInlnZ3QiOiIyZWUzMmRiYjJlMzM0ODJlMmVkMWVhMmQ2MzYyMjlhOCIsInNwciI6IjMxZTBjY2JlZjVmYTRlYjk4ODU5MmYzMDUxNmY2NWZlIiwiaXNzIjoiWWdnZHJhc2lsLUF1dGgiLCJleHAiOjE2MDcwNjIyMjUsImlhdCI6MTYwNjg4OTQyNX0.GLSOzNO5zbb0aU0emCHfMmEke1kGzfRsk7mwrrBrhbs&quot;, // Bearer token
   &quot;clientToken&quot; : &quot;Mojang-API-Client&quot;, // client token we identified ourselves with
   &quot;availableProfiles&quot; : [ // array of available profiles (one Mojang account can have multiple Minecraft profiles on it)
     {

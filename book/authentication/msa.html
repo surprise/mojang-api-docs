@@ -164,7 +164,27 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#authenticating-a-microsoft-account" id="authenticating-a-microsoft-account">Authenticating a Microsoft account</a></h1>
-<p>Under HEAVY construction.</p>
+<p>This article aims to partially document how to log in to a Microsoft account to authenticate with Minecraft.</p>
+<p><strong>WARNING:</strong> This is not a finished article!</p>
+<p>First, you must obtain your XBL3.0 token. This <a href="https://stackoverflow.com/a/52111578">StackOverflow answer</a> shows a way to get the XBL3.0 token in Python. If you take a peek at the source of the referenced library, you can make your own token grabber in your own language. This will be documented at some point later on in time.</p>
+<p>Next, send a <code>POST</code> request to <code>https://api.minecraftservices.com/authentication/login_with_xbox</code>. The POST body should be similar to:</p>
+<pre><code class="language-json">{
+   &quot;identityToken&quot; : &quot;XBL3.0 x=uhs;xsts&quot;,
+   &quot;ensureLegacyEnabled&quot; : true
+}
+</code></pre>
+<p>You must send this request with the <code>Content-Type: application/json</code> header.</p>
+<p>You will get a response similar to this:</p>
+<pre><code class="language-json">{
+  &quot;username&quot; : &quot;830491e6-50e9-e9ed-6e8a-7041f4fef585&quot;, // Xbox account username
+  &quot;roles&quot; : [ ], // i suppose this will have something in it if the account has a copy of Minecraft
+  &quot;access_token&quot; : &quot;eyJhbGciOiJIUzI1NiJ9.eyJ4dWlkIjoiMjUzMzI3NDgwNTgyOTU2OCIsInN1YiI6IjgzMDQ5MWU2LTUwZTktZTllZC02ZThhLTcwNDFmNGZlZjU4NSIsIm5iZiI6MTYwNjg0NTE0Niwicm9sZXMiOltdLCJpc3MiOiJhdXRoZW50aWNhdGlvbiIsImV4cCI6MTYwNjkzMTU0NiwiaWF0IjoxNjA2ODQ1MTQ2LCJ5dWlkIjoiNTRmYzUwYzFiMWJjMTlkZDEwOWZiZWZmOWQxMWJmNDEifQ.-7H1jT3i54gmbqQcUBdHArOn-Jr8eZVAyPDiOr5q_XY&quot;, // access token
+  &quot;token_type&quot; : &quot;Bearer&quot;, // don't think there are other types
+  &quot;expires_in&quot; : 86400 // number of seconds until token expires. MSA tokens last 24 hours. yes, really, 24 hours!
+}
+</code></pre>
+<p>The <code>access_token</code> is what you will now use to authenticate yourself to other API endpoints.</p>
+<p>See the &quot;A peek into Bearer tokens&quot; article for more information about what's inside the <code>access_token</code>.</p>
 
                     </main>
 

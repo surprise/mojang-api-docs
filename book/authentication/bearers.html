@@ -183,16 +183,15 @@
 <h3><a class="header" href="#msa-tokens" id="msa-tokens">MSA Tokens</a></h3>
 <p>Microsoft Accounts are what Minecraft players will be logging in with very soon, so it's good to take a peek inside a MSA token! These are similar yet different in many ways to Yggdrasil tokens.</p>
 <p>An example MSA token, when decoded (try with <a href="https://jwt.io/">the official JWT site</a>!), looks like this:</p>
-<p><strong>Note:</strong> This sample has been heavily redacted due to the fact that frankly I'm not aware of what some of these values are or if they hold sensitive info.</p>
 <pre><code class="language-json">{
-  &quot;xuid&quot;: &quot;xUID (xbox uuid basically)&quot;,
-  &quot;sub&quot;: &quot;32 char hex string (dashed like a UUID)&quot;, // normal Yggdrasil tokens have same code but NOT dashed
+  &quot;xuid&quot;: &quot;2533274805829568&quot;, // xUID (Xbox user identifier basically)
+  &quot;sub&quot;: &quot;830491e6-50e9-e9ed-6e8a-7041f4fef585&quot;, // determines the token from others
   &quot;nbf&quot;: 1606845146, // seems to be same as &quot;iat&quot;
   &quot;roles&quot;: [], // ??? perhaps &quot;entitlements&quot; that have been referenced before on API
   &quot;iss&quot;: &quot;authentication&quot;, // issued by &quot;authentication&quot; (xbox auth) - Yggdrasil normally says &quot;Yggdrasil-Auth&quot;
   &quot;exp&quot;: 1606931546, // expire time
   &quot;iat&quot;: 1606845146, // created at
-  &quot;yuid&quot;: &quot;32 char hex string&quot; // not sure yet
+  &quot;yuid&quot;: &quot;54fc50c1b1bc19dd109fbeff9d11bf41&quot; // something internal with Xbox, not sure
 }
 </code></pre>
 
