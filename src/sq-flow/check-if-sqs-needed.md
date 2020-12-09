@@ -13,7 +13,7 @@ This endpoint will tell the user if they need to answer security questions or if
 
 No response for this status code. No security questions are needed, feel free to use any endpoints that require authorization without the need to answer security questions or authorize your location / IP address.
 
-**401: Unauthorized**
+**403: Forbidden**
 
 Security questions are needed. You must use the "Get security questions" endpoint, then submit the answers using the "Send security answers" endpoint in order to use endpoints that require an authorized location / IP address.
 
