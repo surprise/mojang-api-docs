@@ -179,6 +179,13 @@
 <h3><a class="header" href="#response" id="response">Response</a></h3>
 <p><strong>204: No Content</strong></p>
 <p>No response for this status code. No security questions are needed, feel free to use any endpoints that require authorization without the need to answer security questions or authorize your location / IP address.</p>
+<p><strong>401: Unauthorized</strong></p>
+<p>You provided an invalid Bearer token or neglected to fill in the <code>Authorization</code> header entirely.</p>
+<pre><code class="language-json">{
+   &quot;error&quot; : &quot;Unauthorized&quot;,
+   &quot;errorMessage&quot; : &quot;The request requires user authentication&quot;
+}
+</code></pre>
 <p><strong>403: Forbidden</strong></p>
 <p>Security questions are needed. You must use the &quot;Get security questions&quot; endpoint, then submit the answers using the &quot;Send security answers&quot; endpoint in order to use endpoints that require an authorized location / IP address.</p>
 <pre><code class="language-json">{
