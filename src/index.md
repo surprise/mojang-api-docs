@@ -11,7 +11,7 @@ This documentation wouldn't be possible without the following people:
 - tanpug
 - courtier
 - Mary
-- danktrainy
+- danktrain
 
 If I missed your credit, reach out. I want to give credit where credit is due.
 
