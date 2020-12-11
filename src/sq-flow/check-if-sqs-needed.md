@@ -15,6 +15,17 @@ No response for this status code. No security questions are needed, feel free to
 
 **401: Unauthorized**
 
+You provided an invalid Bearer token or neglected to fill in the `Authorization` header entirely.
+
+```json
+{
+   "error" : "Unauthorized",
+   "errorMessage" : "The request requires user authentication"
+}
+```
+
+**403: Forbidden**
+
 Security questions are needed. You must use the "Get security questions" endpoint, then submit the answers using the "Send security answers" endpoint in order to use endpoints that require an authorized location / IP address.
 
 ```json
